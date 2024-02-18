@@ -1,4 +1,4 @@
-package com.example.crud.controller;
+package com.example.crud;
 
 import com.example.crud.CrudApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
