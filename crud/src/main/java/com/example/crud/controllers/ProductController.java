@@ -1,5 +1,6 @@
 package com.example.crud.controllers;
 
+import com.example.crud.dto.DeleteProductDTO;
 import com.example.crud.dto.PostProductDTO;
 import com.example.crud.dto.PutProductDTO;
 import com.example.crud.entities.ProductEntity;
@@ -31,18 +32,24 @@ public class ProductController {
     }
 
     @PutMapping
-    public ResponseEntity putProduc(@RequestBody @Valid PutProductDTO data) {
+    public ResponseEntity putProduct(@RequestBody @Valid PutProductDTO data) {
         ProductEntity productEntity = productRepository.getReferenceById(data.id());
 
         if (data.name() != null && !data.name().isEmpty()) {
             productEntity.setName(data.name());
         }
-
         if (data.price() != null) {
             productEntity.setPrice(data.price());
         }
 
         productRepository.save(productEntity);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity deleteProduct(@RequestBody @Valid DeleteProductDTO data) {
+        ProductEntity productEntity = productRepository.getReferenceById(data.id());
+        productRepository.delete(productEntity);
         return ResponseEntity.ok().build();
     }
 }
