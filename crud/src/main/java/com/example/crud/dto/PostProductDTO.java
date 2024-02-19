@@ -1,3 +1,9 @@
 package com.example.crud.dto;
 
-public record PostProductDTO(String name, Integer price) {}
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+public record PostProductDTO(
+        @NotBlank String name,
+        @NotNull Integer price)
+{}

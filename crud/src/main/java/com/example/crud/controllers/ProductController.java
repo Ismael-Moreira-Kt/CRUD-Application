@@ -1,6 +1,7 @@
 package com.example.crud.controllers;
 
 import com.example.crud.dto.PostProductDTO;
+import com.example.crud.dto.PutProductDTO;
 import com.example.crud.entities.ProductEntity;
 import com.example.crud.repositories.ProductRepository;
 import jakarta.validation.Valid;
@@ -25,6 +26,22 @@ public class ProductController {
     @PostMapping
     public ResponseEntity postProduct(@RequestBody @Valid PostProductDTO data){
         ProductEntity productEntity = new ProductEntity(data);
+        productRepository.save(productEntity);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity putProduc(@RequestBody @Valid PutProductDTO data) {
+        ProductEntity productEntity = productRepository.getReferenceById(data.id());
+
+        if (data.name() != null && !data.name().isEmpty()) {
+            productEntity.setName(data.name());
+        }
+
+        if (data.price() != null) {
+            productEntity.setPrice(data.price());
+        }
+
         productRepository.save(productEntity);
         return ResponseEntity.ok().build();
     }
