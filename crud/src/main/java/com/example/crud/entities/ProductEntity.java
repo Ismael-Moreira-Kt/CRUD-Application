@@ -1,5 +1,6 @@
 package com.example.crud.entities;
 
+import com.example.crud.dto.PostProductDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,4 +17,9 @@ public class ProductEntity {
     private Integer id;
     private String name;
     private int price;
+
+    public ProductEntity(PostProductDTO data){
+        this.name = data.name();
+        this.price = data.price();
+    }
 }

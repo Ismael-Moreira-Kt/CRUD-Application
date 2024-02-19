@@ -1,6 +1,7 @@
 package com.example.crud.controllers;
 
-import com.example.crud.dto.RequestProductDTO;
+import com.example.crud.dto.PostProductDTO;
+import com.example.crud.entities.ProductEntity;
 import com.example.crud.repositories.ProductRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity postProduct(@RequestBody @Valid RequestProductDTO data){
-        
+    public ResponseEntity postProduct(@RequestBody @Valid PostProductDTO data){
+        ProductEntity productEntity = new ProductEntity(data);
+        productRepository.save(productEntity);
+        return ResponseEntity.ok().build();
     }
 }
