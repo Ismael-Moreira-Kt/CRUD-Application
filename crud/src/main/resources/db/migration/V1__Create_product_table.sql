@@ -1,5 +1,0 @@
-CREATE TABLE product (
-    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    name TEXT NOT NULL,
-    price_in_cents INT NOT NULL
-);
