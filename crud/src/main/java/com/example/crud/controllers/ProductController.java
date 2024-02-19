@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
@@ -22,6 +22,12 @@ public class ProductController {
     public ResponseEntity getAllProducts(){
         var allProducts = productRepository.findAll();
         return ResponseEntity.ok(allProducts);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity getProductById(@PathVariable Integer id) {
+        var product = productRepository.findById(id);
+        return ResponseEntity.ok(product);
     }
 
     @PostMapping
